@@ -35,7 +35,9 @@ By clicking on to display all customers,
 Pulls all the customers from the DB from the customer table and shows them to me on the screen 
 ![showAll](./img/showAll.png)
 
-
+By clicking on button showMoreDetails,
+it's show the sick details.
+![sickDetails](./img/sickDetails.png)
  
 
 # Server-c#
