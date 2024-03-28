@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="address.css">
+    <script src="address.js"></script>
+    <link rel="stylesheet" href="design.css">
+    <script src="person.js"></script>
+</head>
+
+<body>
+    <div id="h2">מערכת ניהול קורונה לקופת חולים</div>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <div class="parent">
+            <div class="div1"> <input type="text" name="" style="display: inline;" id="id"></div>
+            <div class="div2"> <input type="button" value="שליחה" onclick="updateAddressDetails()"
+                    style="display: inline; background-color:rgb(170, 167, 167)"></div>
+        </div>
+
+    </div>
+
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+    <div class="container" id="conta">
+        <h1 id="h2">עדכון פרטים</h1>
+        <form id="Form1" action="/action_page.php">
+            <div id="male">
+                
+               
+                <div class="space">
+                    <label for="id">מספר מזהה</label>
+                    <input type="text" class="form-control" id="id" placeholder="מספר" name="id" required
+                        pattern="[0-9]{9}">
+                </div>
+
+              
+                <div class="space">
+                    <label for="address">עיר:</label>
+                    <input type="text" id="city" name="address" placeholder="עיר" required>
+                </div>
+
+
+                <div class="space">
+                    <label for="phonenumber"> רחוב</label>
+                    <input type="text" id="street" name="phonenumber" required placeholder="רחוב" required
+                        pattern="[0-9]{9,10}">
+                </div>
+               
+                <div class="space">
+                    <label for="phonenumber"> מספר</label>
+                    <input type="text" id="num" name="phonenumber" required placeholder="מספר" required
+                        pattern="[0-9]{9,10}">
+                </div>
+              
+                <br>
+               
+             
+            </div>
+            <br>
+            <br>
+
+
+            <div class="parent">
+                <div class="div1">
+                    <button type="reset" value="ביטול" class="re">ביטול</button>
+                </div>
+
+                <br>
+                <div class="div3"> <button type="button" value="לעדכון פרטים" onclick="updateAddress()"
+                        class="re">לעדכון </button>
+                </div>
+            </div>
+
+
+            <div id="res"></div>
+        </form>
+
+
+</body>
+
+</html>

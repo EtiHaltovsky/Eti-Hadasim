@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PharmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Manufacturer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="NameOfManufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Vaccination" Relationship="Self.FK_Manufacturer_ToVaccination" FromRole="Manufacturer" ToRole="Vaccination" />
+  </EntityType>
+  <EntityType Name="Sick">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RecivingPositive" Type="DateTime" Precision="3" />
+    <Property Name="TimeOfRecovery" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Treated" Relationship="Self.FK_Sick_ToTreated" FromRole="Sick" ToRole="Treated" />
+  </EntityType>
+  <EntityType Name="Treated">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Sick" Relationship="Self.FK_Sick_ToTreated" FromRole="Treated" ToRole="Sick" />
+    <NavigationProperty Name="TreatedToVaccinations" Relationship="Self.FK_TreatedToVaccination_ToTreated" FromRole="Treated" ToRole="TreatedToVaccination" />
+  </EntityType>
+  <EntityType Name="TreatedToVaccination">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTreated" Type="Int32" Nullable="false" />
+    <Property Name="IdVaccination" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Treated" Relationship="Self.FK_TreatedToVaccination_ToTreated" FromRole="TreatedToVaccination" ToRole="Treated" />
+    <NavigationProperty Name="Vaccination" Relationship="Self.FK_TreatedToVaccination_ToVaccination" FromRole="TreatedToVaccination" ToRole="Vaccination" />
+  </EntityType>
+  <EntityType Name="Vaccination">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RecivingVaccine" Type="DateTime" Precision="3" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Manufacturer1" Relationship="Self.FK_Manufacturer_ToVaccination" FromRole="Vaccination" ToRole="Manufacturer" />
+    <NavigationProperty Name="TreatedToVaccinations" Relationship="Self.FK_TreatedToVaccination_ToVaccination" FromRole="Vaccination" ToRole="TreatedToVaccination" />
+  </EntityType>
+  <Association Name="FK_Manufacturer_ToVaccination">
+    <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="1" />
+    <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Vaccination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Manufacturer">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sick_ToTreated">
+    <End Role="Treated" Type="Self.Treated" Multiplicity="1" />
+    <End Role="Sick" Type="Self.Sick" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Treated">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sick">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TreatedToVaccination_ToTreated">
+    <End Role="Treated" Type="Self.Treated" Multiplicity="1" />
+    <End Role="TreatedToVaccination" Type="Self.TreatedToVaccination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Treated">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TreatedToVaccination">
+        <PropertyRef Name="IdTreated" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TreatedToVaccination_ToVaccination">
+    <End Role="Vaccination" Type="Self.Vaccination" Multiplicity="1" />
+    <End Role="TreatedToVaccination" Type="Self.TreatedToVaccination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vaccination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TreatedToVaccination">
+        <PropertyRef Name="IdVaccination" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PharmEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
+    <EntitySet Name="Sicks" EntityType="Self.Sick" />
+    <EntitySet Name="Treateds" EntityType="Self.Treated" />
+    <EntitySet Name="TreatedToVaccinations" EntityType="Self.TreatedToVaccination" />
+    <EntitySet Name="Vaccinations" EntityType="Self.Vaccination" />
+    <AssociationSet Name="FK_Manufacturer_ToVaccination" Association="Self.FK_Manufacturer_ToVaccination">
+      <End Role="Vaccination" EntitySet="Vaccinations" />
+      <End Role="Manufacturer" EntitySet="Manufacturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sick_ToTreated" Association="Self.FK_Sick_ToTreated">
+      <End Role="Treated" EntitySet="Treateds" />
+      <End Role="Sick" EntitySet="Sicks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TreatedToVaccination_ToTreated" Association="Self.FK_TreatedToVaccination_ToTreated">
+      <End Role="Treated" EntitySet="Treateds" />
+      <End Role="TreatedToVaccination" EntitySet="TreatedToVaccinations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TreatedToVaccination_ToVaccination" Association="Self.FK_TreatedToVaccination_ToVaccination">
+      <End Role="Vaccination" EntitySet="Vaccinations" />
+      <End Role="TreatedToVaccination" EntitySet="TreatedToVaccinations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

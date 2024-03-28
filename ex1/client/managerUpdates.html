@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+
+  <link rel="stylesheet" href="design.css">
+
+  <link rel="stylesheet" href="managerUpdates.css">
+  <script src="address.js"></script>
+  <script src="person.js"></script>
+
+</head>
+
+<body>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <br>
+  <br>
+  <div id="h2">מערכת ניהול קורונה לקופת חולים</div>
+
+  <br>
+  <br>
+  <br>
+ 
+
+  <div class="row">
+    <div class="left" style="background-color:#bbb;">
+      <h2>אפשרויות</h2>
+      <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+
+      <ul id="myMenu">
+       
+        <li><a href="person.html"><input type="button" value="הוספת לקוח"></a></li>
+        <li><a href="update.html"><input type="button" value="עדכון פרטי לקוח"></a></li>
+        <li><a href="delete.html"><input type="button" value="מחיקת לקוח"></a></li>
+
+        <li style="padding-right: 10px; padding-top: 10px;"><input type="button" value="להצגת כל הלקוחות"        
+            onclick="ShowAlltreateds()"></li>
+            
+      </ul>
+    </div>
+
+    <div class="right" style="background-color:#ddd;">
+
+    </div>
+  </div>
+
+  <div id="main"></div>
+  <div id="sick"></div>
+
+
+</body>
+
+</html>

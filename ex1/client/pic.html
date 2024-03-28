@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Display Image</title>
+</head>
+<body>
+    <!-- טופס להעלאת תמונה -->
+    <input type="file" id="fileInput" accept=".jpg, .jpeg, .png">
+    <button onclick="uploadImage()">העלה תמונה</button>
+
+    <!-- הצגת התמונה -->
+    <div id="imageContainer" style="display: none;">
+        <img id="uploadedImage" src="#" alt="התמונה של חבר הקופה תוצג כאן">
+    </div>
+
+    <script>
+        function uploadImage() {
+            let fileInput = document.getElementById('fileInput');
+            let imageContainer = document.getElementById('imageContainer');
+            let uploadedImage = document.getElementById('uploadedImage');
+
+            // בדיקה שהמשתמש בחר קובץ
+            if (fileInput.files.length > 0) {
+                let file = fileInput.files[0];
+                let reader = new FileReader();
+
+                // בדיקה שהקובץ הוא תמונה ואז קריאתו
+                if (/\.(jpe?g|png)$/i.test(file.name)) {
+                    reader.onload = function(e) {
+                        uploadedImage.src = e.target.result;
+                        imageContainer.style.display = 'block'; // הצגת תמונה בתיבת התמונה
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('נא להעלות קובץ תמונה בפורמט JPG, JPEG או PNG');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

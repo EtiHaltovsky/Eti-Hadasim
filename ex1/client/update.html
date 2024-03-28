@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="s.css">
+    <link rel="shortcut icon" href="assets/סמל.png" type="image/png">
+    <script src="student.js"></script>
+    <link rel="stylesheet" href="design.css">
+    <script src="person.js"></script>
+</head>
+
+<body onload="onloadPerson()">
+    <div id="h2">מערכת ניהול קורונה לקופת חולים</div>
+
+    <div class="container" id="conta">
+        <h1 id="h2">עדכון פרטים</h1>
+        <form id="regForm" action="/action_page.php">
+            <div id="male">
+
+                <div class="space">
+                    <label for="Name"> שם פרטי + משפחה</label>
+                    <input type="text" id="Name" name="name" placeholder="שם פרטי + משפחה" required
+                        pattern="[a-z A-Z]{1,}">
+                </div>
+
+                <div class="space">
+                    <label for="id">תעודת זהות:</label>
+                    <input type="text" class="form-control" id="id" placeholder="תעודת זהות" name="id" required
+                        pattern="[0-9]{9}">
+                </div>
+
+
+                <div class="space">
+                    <label for="address">עיר:</label>
+                    <input type="text" id="city" name="address" placeholder="עיר" required>
+                </div>
+                <div class="space">
+                    <label for="address">רחוב:</label>
+                    <input type="text" id="street" name="address" placeholder="רחוב" required>
+                </div>
+                <div class="space">
+                    <label for="address">מספר:</label>
+                    <input type="text" id="number" name="address" placeholder="מספר" required>
+                </div>
+
+
+
+                <div class="space">
+                    <label for="dateOfBirth">תאריך לידה:</label>
+                    <input type="text" id="dateOfBirth" name="dateOfBirth" placeholder="תאריך לידה" required>
+                </div>
+
+                <div class="space">
+                    <label for="phone">מספר טלפון:</label>
+                    <input type="text" id="phone" name="phonenumber" required placeholder="מספר טלפון" required
+                        pattern="[0-9]{9,10}">
+                </div>
+
+                <div class="space">
+                    <label for="phonenumber"> טלפון נייד</label>
+                    <input type="text" id="phonenumber" name="phonenumber" required placeholder="טלפון נייד" required
+                        pattern="[0-9]{9,10}">
+                </div>
+            </div>
+            <br>
+            <br>
+
+
+            <div class="parent" style="display: flex;">
+                <div class="div1" style="margin: 2px;">
+                    <button type="reset" value="ביטול" class="re">ביטול</button>
+                </div>
+
+                <br>
+                <div class="div3"  style="margin: 2px;"> <button type="button" value="לעדכון פרטים" onclick="updateDetailsTreated()"
+                        class="re">לעדכון </button>
+                </div>
+            </div>
+
+
+            <div id="res"></div>
+        </form>
+
+
+        <div class="container" id="conta">
+            <h1 id="h2">עדכון מועד מחלה והחלמה</h1>
+            <form id="regForm" action="/action_page.php">
+                <div id="male">
+        
+                    <div class="space">
+                        <label for="userID">תעודת זהות:</label>
+                        <input type="text" class="form-control" id="userID" placeholder="תעודת זהות" name="userID" required
+                            pattern="[0-9]{9}">
+                    </div>
+    
+        
+                    <div class="space">
+                        <label for="dateOfBirth">מועד קבלת תשובה חיובית:</label>
+                        <input type="date" id="okCovid19" placeholder="תאריך חיובית" required>
+                    </div>    
+        
+                    <div class="space">
+                        <label for="dateOfBirth">מועד החלמה:</label>
+                        <input type="date" id="recover" placeholder="תאריך החלמה" required>
+                    </div>    
+                </div>
+                <br>
+                <br>
+    
+
+                <div class="parent" style="display: flex;">
+                    <div class="div1" style="margin: 2px;">
+                        <button type="reset" value="ביטול" class="re">ביטול</button>
+                    </div>
+    
+                    <br>
+                    <div class="div3"  style="margin: 2px;"> <button type="button" value="לעדכון פרטים" onclick="GetAddNewSick()"
+                            class="re">לעדכון </button>
+                    </div>
+                </div>
+    
+    
+                <div id="res"></div>
+            </form>
+
+</body>
+
+</html>
